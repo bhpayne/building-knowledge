@@ -1,0 +1,5 @@
+# used by all scripts
+num_int_to_print: 100 # positive integer
+# used by parallel 
+num_nodes: 6 # positive integer
+
