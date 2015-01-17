@@ -16,5 +16,6 @@ do
   echo "core number: $core_indx    number of cores: $1"
   echo "python $2 $core_indx $1" # $2 = python file name, $1 = number of cores
   python $2 $core_indx $1
-  sleep 2
+#  (  python $2 $core_indx $1  ) &
+#sleep 2
 done
