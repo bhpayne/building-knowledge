@@ -9,7 +9,7 @@ $ python serial_print_to_file.py
 this Python script reads from "parameters.input" to determine how many integers to write to a file and to stdout
 The integers get printed as plain text in output.dat and as Pickle binary in output.pkl
 
-== parallel ==
+== multiple independent workers, sequential ==
 
 $ ./launch_workers.sh 6 print_to_file_worker.py
 
@@ -26,9 +26,25 @@ $ wc -l output_*.dat
       20 output_6.dat
      100 total
 
+Each worker includes a "sleep" delay to replicate the behavior of a computational task.
+Since the set of independent workers is sequential, the total time is a sum of each worker delay
+
 To join these files, 
 $ python join_worker_output.py 6
 
 checking that this produced the right output,
 $ wc -l output_from_joiner.dat 
      100 output_from_joiner.dat
+
+== parallel ==
+
+The launch_workers bash script can either run the "print_to_file_worker" scripts sequentially or, using subshells, in parallel
+
+sequential:      
+python $2 $core_indx $1
+
+parallel: 
+( python $2 $core_indx $1 ) &
+
+When run in parallel, the total delay is the time for one worker to run
+

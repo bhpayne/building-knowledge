@@ -7,6 +7,7 @@
 import yaml # for reading parameters from file # http://pyyaml.org/wiki/PyYAML
 import pickle # serialize data output
 import sys # command line arguments
+import time # pause to simulate computation delay
 # import cPickle as pickle # "upto 1000 times faster because it is in C"
 
 def write_to_file(start_indx,end_indx,pkl_file_name,dat_file_name):
@@ -49,4 +50,5 @@ pkl_extension='.pkl'
 pkl_file_name=output_file_name+str(core_indx)+pkl_extension
 dat_file_name=output_file_name+str(core_indx)+'.dat'
 
+time.sleep(5) # delay the process to act as computation
 write_to_file(start_indx,end_indx,pkl_file_name,dat_file_name)

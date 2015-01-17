@@ -8,14 +8,12 @@ if [ "$#" -ne 2 ]; then
   exit 1
 fi
 
-# $1 = number of cores
-# $2 = python file name
-
 for (( core_indx=1; core_indx<=$1; core_indx++ ))
 do
   echo "core number: $core_indx    number of cores: $1"
   echo "python $2 $core_indx $1" # $2 = python file name, $1 = number of cores
-  python $2 $core_indx $1
-#  (  python $2 $core_indx $1  ) &
+# uncomment one of the following two lines
+  python $2 $core_indx $1 # sequential
+#  (  python $2 $core_indx $1  ) & # parallel using subshell
 #sleep 2
 done
