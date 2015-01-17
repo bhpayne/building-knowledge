@@ -36,7 +36,35 @@ checking that this produced the right output,
 $ wc -l output_from_joiner.dat 
      100 output_from_joiner.dat
 
-== parallel ==
+==== math of dividing indices among workers ====
+
+Suppose I have 1:13 and 3 computation cores
+
+indices:   1 2 3 4 5 6 7 8 9 10 11 12 13
+CPU cores: <- 1 -> <- 2 -> <-    3    ->
+
+let num_items  = 13
+let num_cores  =  3
+
+then chunk_size = floor(13/3) = 4
+
+let core_indx = 1:num_cores = 1:3
+then we want
+
+core_indx | start | end
+----------------------
+     1    |   1   |  4
+     2    |   5   |  8
+     3    |   9   | 13
+
+To capture this, let
+start = (core_indx-1)*chunk_size+1
+if core_indx = num_cores, then end = num_items
+else end = core_indx*chunk_size
+
+
+
+== multiple independent workers, parallel ==
 
 The launch_workers bash script can either run the "print_to_file_worker" scripts sequentially or, using subshells, in parallel
 
