@@ -12,7 +12,7 @@ def info(title):
 
 def worker(name):
     info("worker")
-    time.sleep(5)
+    time.sleep(2)
     print("hello from "+name)
 
 if __name__ == '__main__':
