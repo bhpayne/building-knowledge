@@ -1,3 +1,4 @@
+# http://pymotw.com/2/multiprocessing/basics.html
 import multiprocessing
 import time
 import sys
@@ -9,16 +10,14 @@ def daemon():
 
 def non_daemon(indx):
     print 'Starting:', multiprocessing.current_process().name
-    print(indx)
     print 'Exiting :', multiprocessing.current_process().name
 
 if __name__ == '__main__':
     d = multiprocessing.Process(name='daemon', target=daemon)
     d.daemon = True
 
-    for indx in range(4):
-      n = multiprocessing.Process(name='non-daemon', target=non_daemon,args=(indx,))
-      n.daemon = False
+    n = multiprocessing.Process(name='non-daemon', target=non_daemon)
+    n.daemon = False
 
     d.start()
     time.sleep(1)

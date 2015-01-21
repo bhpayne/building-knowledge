@@ -1,3 +1,4 @@
+# http://pymotw.com/2/multiprocessing/basics.html
 import time
 import multiprocessing
 
@@ -14,4 +15,5 @@ if __name__ == '__main__':
         p = multiprocessing.Process(target=worker, args=(i,))
         jobs.append(p)
         p.start()
+    p.join()
     print(jobs)
