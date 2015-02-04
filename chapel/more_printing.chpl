@@ -1,4 +1,5 @@
 
-int = 10;
-writeln("integerArray: ", int);
+int intgr;
+intgr = 10;
+writeln("integer: ", intgr);
 
