@@ -1,5 +1,5 @@
 # correlate power and nodes
 
-query PDUs
+query PDUs  
 launch CPU hog to cause spike
 
