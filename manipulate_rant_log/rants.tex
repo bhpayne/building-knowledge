@@ -1,0 +1,30 @@
+\documentclass{tufte-book}
+% http://ctan.mirrors.hoobly.com/macros/latex/contrib/tufte-latex/sample-book.pdf
+% http://mirror.unl.edu/ctan/macros/latex/contrib/tufte-latex/sample-handout.pdf
+\usepackage{lipsum}
+
+% http://tex.stackexchange.com/questions/68525/using-latex-to-keep-a-diary
+
+\newenvironment{loggentry}[2]% date, tags
+{\noindent\textbf{#2}\marginnote{#1}\\}{\vspace{0.5cm}}
+
+\begin{document}
+
+\begin{loggentry}{2009-Oct-31}{Snow}
+    \lipsum[1]
+\end{loggentry}
+
+\begin{loggentry}{2010-Dez-31}{Water of Life}
+    \lipsum[2]
+\end{loggentry}
+
+\begin{loggentry}{2011-Nov-15}{Cold}
+    \lipsum[3-5]
+\end{loggentry}
+
+\begin{loggentry}{2012-Aug-24}{Sunrise}
+    \lipsum[6-7]
+\end{loggentry}
+
+\end{document}
+
