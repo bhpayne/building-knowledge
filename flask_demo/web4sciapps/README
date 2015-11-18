@@ -6,3 +6,8 @@ https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask006.html#wf:vib:flask
 https://github.com/hplgit/web4sciapps/tree/master/doc/src/web4sa/src-web4sa/apps/flask_apps/vib1
 
 
+
+python controller.py
+
+http://127.0.0.1:5000/vib1
+
