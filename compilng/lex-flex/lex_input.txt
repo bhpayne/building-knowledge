@@ -1,0 +1,33 @@
+
+
+contents of lex input file:
+
+first part
+%%
+pattern   action
+%%
+third part
+
+
+
+
+Bens-MacBook-Air:to_digest benpayne$ mkdir lex_examples
+Bens-MacBook-Air:to_digest benpayne$ cd lex_examples/
+Bens-MacBook-Air:lex_examples benpayne$ vi example1.l
+Bens-MacBook-Air:lex_examples benpayne$ lex example1.l 
+Bens-MacBook-Air:lex_examples benpayne$ ls -hl
+total 104
+-rw-r--r--  1 benpayne  staff    64B Oct  1 13:19 example1.l
+-rw-r--r--  1 benpayne  staff    43K Oct  1 13:20 lex.yy.c
+Bens-MacBook-Air:lex_examples benpayne$ cc lex.yy.c -ll
+Bens-MacBook-Air:lex_examples benpayne$ ls -hl
+total 160
+-rwxr-xr-x  1 benpayne  staff    24K Oct  1 13:21 a.out
+-rw-r--r--  1 benpayne  staff    64B Oct  1 13:19 example1.l
+Bens-MacBook-Air:lex_examples benpayne$ ./a.out 
+ben
+
+hello world
+GOODBYE
+
+

@@ -1,0 +1,15 @@
+1) scanner (lexical analysis)
+input: source code character stream
+output: token stream
+"lex"/"flex" = scanner generator
+    Input to lex is regular expressions and associated actions written in C
+    output is table-driven scanner "lex.yy.c"
+
+2) parser (syntax analysis)
+output: parse tree
+
+3) symantic analysis and code generation
+output: abstract syntax tree
+
+
+

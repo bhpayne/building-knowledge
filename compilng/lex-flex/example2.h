@@ -1,0 +1,25 @@
+// tokens used by lex 
+#define bit 1
+#define COMMENT 2
+#define KEYWORD_MACRO 3
+#define KEYWORD_BEGIN 4
+#define KEYWORD_END 5
+#define KEYWORD_input 6
+#define KEYWORD_output 7
+#define KEYWORD_if 8
+#define DIRECTIVE_newtime 9
+#define DIRECTIVE_ec 10
+#define DIRECTIVE_assert 11
+#define had 12
+#define cnot 13
+#define not 14
+#define name 15
+#define COMMA 16
+#define COLON 17
+#define right_paran 18
+#define left_paran 19
+#define equals 20
+#define VARIABLE 21
+#define passed_bit 22
+#define ONE 23
+#define ZERO 24

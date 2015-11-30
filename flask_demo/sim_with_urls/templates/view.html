@@ -1,0 +1,19 @@
+<form method=post action="">
+<table>
+  {% for field in form %}
+    <tr>
+    <td>{{ field.name }}</td><td>{{ field }}</td>
+    <td>{{ field.label }}</td>
+    </tr>
+  {% endfor %}
+</table>
+<p><input type=submit value=Compute></form></p>
+
+<p>
+{% if result != None %}
+results array: {{ result }} <BR>
+{{ result[0] }} in Watts,<BR>
+{{ result[1] }} in amps
+{% endif %}
+</p>
+
