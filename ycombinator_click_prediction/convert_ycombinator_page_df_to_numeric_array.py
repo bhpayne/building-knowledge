@@ -55,5 +55,5 @@ for this_title in list_of_titles:
             words_dic[this_word]=indx
             indx+=1
 
-
+# remove stop words
 
