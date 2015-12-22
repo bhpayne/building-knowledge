@@ -58,7 +58,7 @@ for this_title in list_of_titles:
 
 # Mike's method to get all of the unique words in a column 
 results=set()  
-df.ix[:,1].str.lower().str.split(' ').apply(results.update) # convert 'Titles' column to lowercase, split on ' '
+df.ix[:,1].str.lower().str.split(' ').apply(results.update) # convert 'Titles' column to lowercase, split on ' '. Apply = to entire column; update = in-place change
 print sorted(results)
 
 # to do: remove stop words
