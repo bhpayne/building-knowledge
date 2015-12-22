@@ -46,6 +46,7 @@ for this_domain in list_of_domains:
         domains_dic[this_domain]=indx
         indx+=1
 
+# Ben's method of creating a dictionary -- each word as key gets unique integer value
 list_of_titles=df['Title'].tolist()
 indx=0
 for this_title in list_of_titles:
@@ -55,5 +56,10 @@ for this_title in list_of_titles:
             words_dic[this_word]=indx
             indx+=1
 
-# remove stop words
+# Mike's method to get all of the unique words in a column 
+results=set()  
+df.ix[:,1].str.lower().str.split(' ').apply(results.update) # convert 'Titles' column to lowercase, split on ' '
+print sorted(results)
+
+# to do: remove stop words
 
