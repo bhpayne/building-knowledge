@@ -8,9 +8,9 @@ import pandas as pd
 #from selenium.webdriver.common.keys import Keys
 import numpy as np
 pd.options.mode.chained_assignment = None 
-import sys
-reload(sys)  
-sys.setdefaultencoding('utf8') # enables export to CSV of unicode
+#import sys
+#reload(sys)  
+#sys.setdefaultencoding('utf8') # enables export to CSV of unicode
 pd.set_option('display.max_rows', 1000)
 pd.set_option('max_colwidth',700)
 pd.set_option('display.width', 1000)
@@ -37,13 +37,14 @@ def get_page(page,tf=tf):
     domains.ix[:,1][domains.ix[:,2].str.len()>0]=domains.ix[:,2] #
     domains=domains.ix[:,1] #
     df['Domain']=domains.replace('\)','',regex=True) #
+    df=df[df.Domain.notnull()]   
     try:
-        df['urls']=re.findall('href="(http.{,150})',data)[1:-1]  #finds the complete urls
+        df['urls']=re.findall('href="(http.{,150})',data)[1:-2]  #finds the complete urls
     except:
-        df=df[df.Domain.notnull()]                               #drop rows where domain is null
-        #print 'length of the dataframe',len(df)                 #testing for mismatch of length of urls and lenght of df
-        #print 'length of urls',len(re.findall('href="(http.{,150})',data)[1:-2])
-        df['urls']=re.findall('href="(http.{,150})',data)[1:-2]
+                                    #drop rows where domain is null
+        print 'length of the dataframe',len(df)                 #testing for mismatch of length of urls and lenght of df
+        print 'length of urls',len(re.findall('href="(http.{,150})',data)[1:-1])
+        df['urls']=re.findall('href="(http.{,150})',data)[1:-1]
       
         
     df.urls.replace('".*','',regex=True,inplace=True)  #clean urls
@@ -55,14 +56,19 @@ def get_page(page,tf=tf):
     return df
 
 
-for page in xrange(1,3):                                 #set the number of pages that you want to grab limit is around 38 more than that and they return a blank page
-    tf=pd.concat([tf,get_page(page)])
+for page in xrange(1,10):   #set the number of pages that you want to grab limit is around 38 more than that and they return a blank page
+    try:
+        tf=pd.concat([tf,get_page(page)])
+    except:
+      
+        pass
     
+
 #df.to_excel('ycombinator.xls') #write to excel
-tf.to_csv('ycombinator.csv') #write to CSV
+#tf.to_csv('ycombinator.csv') #write to CSV
 tf.to_pickle('ycombinator.pkl')
 results=set()  #gets all of the unique words in a column 
 tf.ix[:,1].str.lower().str.split(' ').apply(results.update) #
 
 f=open('word_list.txt','w')
-f.write(str(sorted(results)))c
+f.write(str(sorted(results)))
