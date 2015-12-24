@@ -9,11 +9,25 @@ df=df.fillna(0)
 n_estimators=150
 regressor = RandomForestRegressor(n_estimators, min_samples_split=1)
 
-data_slice=.9*len(df)
-X_train=df.ix[:data_slice,:-4].astype(float)
-X_test=df.ix[data_slice:,:-4].astype(float)
-y_train=df.ix[:data_slice,-4:]
-y_test=df.ix[data_slice:,-4:]
+# df = [           *            ]       ^
+#      [           *            ]       |
+#      [  x_train  *  y_train   ]   training_row_count
+#      [           *            ]       |
+#      [           *            ]       v
+#      [************************]
+#      [           *            ]
+#      [  x_test   *   y_test   ]
+#      [           *            ]
+#
+#                   <--- 4 ---->
+#
+
+training_row_count=int(.9*len(df))
+y_column_count=4
+X_train=df.ix[:training_row_count,:-1*y_column_count].astype(float)
+X_test=df.ix[training_row_count:,:-1*y_column_count].astype(float)
+y_train=df.ix[:training_row_count,-1*y_column_count:]
+y_test=df.ix[training_row_count:,-1*y_column_count:]
 
 regressor.fit(X_train, y_train)
 prediction=regressor.predict(X_test)

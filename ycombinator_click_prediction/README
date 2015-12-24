@@ -1,3 +1,10 @@
+
+python ycombinator_page_parser.py
+python convert_ycombinator_page_df_to_numeric_array.py
+python ml_for_df.py
+
+****************************************
+
 A little web searching shows this is a common task
 
 https://support.google.com/chrome/answer/1385029?hl=en

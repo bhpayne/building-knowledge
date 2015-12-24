@@ -3,6 +3,7 @@ import os.path # file detection
 import pickle
 import re
 import numpy as np
+from tqdm import tqdm # sudo pip install tqdm # https://pypi.python.org/pypi/tqdm
 
 def max_value_in_dic(this_dic):
     max_value=-1
@@ -87,15 +88,15 @@ print(df.shape)
 # print(df)
 
 # for every word in "words_list" and for every row, is that word contained in the title?
-for word in words_list:
+for word in tqdm(words_list):
 #     print word
     indx=df[df.Title.str.contains(word)].index
     df[word].ix[indx]=1
 # print df[word].ix[indx]
-for word in domains_list:
+for word in tqdm(domains_list):
     indx=df[df.Title.str.contains(word)].index
     df[word].ix[indx]=1
-for word in publishers_list:
+for word in tqdm(publishers_list):
     indx=df[df.Title.str.contains(word)].index
     df[word].ix[indx]=1
 
