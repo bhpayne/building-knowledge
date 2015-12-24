@@ -13,24 +13,18 @@ def max_value_in_dic(this_dic):
 
 df = pd.read_pickle('ycombinator.pkl')
 
-if os.path.isfile('data/publishers_dic.pkl'):
-    publishers_dic=pickle.load( open( 'data/publishers_dic.pkl', 'rb' ) )
-    max_publisher_indx=max_value_in_dic(publishers_dic)
+if os.path.isfile('data/publishers_list.pkl'):
+    publishers_list=pickle.load( open( 'data/publishers_list.pkl', 'rb' ) )
 else:
-    publishers_dic={}
-    max_publisher_indx=0
-if os.path.isfile('data/domains_dic.pkl'):
-    domains_dic=pickle.load( open( 'data/domains_dic.pkl', 'rb' ) )
-    max_domain_indx=max_value_in_dic(domains_dic)
+    publishers_list=[]
+if os.path.isfile('data/domains_list.pkl'):
+    domains_list=pickle.load( open( 'data/domains_list.pkl', 'rb' ) )
 else:
-    domains_dic={}
-    max_domain_indx=0
-if os.path.isfile('data/words_dic.pkl'):
-    words_dic=pickle.load( open( 'data/words_dic.pkl', 'rb' ) )
-    max_word_indx=max_value_in_dic(words_dic)
+    domains_list=[]
+if os.path.isfile('data/words_list.pkl'):
+    words_list=pickle.load( open( 'data/words_list.pkl', 'rb' ) )
 else:
-    words_dic={}
-    max_word_indx=0
+    words_list=[]
 
 f=open('stop_word_list.txt','r')
 stop_words=f.read()
@@ -41,51 +35,54 @@ df['clicked_comments']=0
 df['clicked_domain']=0
 df['clicked_publisher']=0
 
-list_of_publishers=df['publisher'].tolist()
-indx=max_publisher_indx
-for this_publisher in list_of_publishers:
-    if this_publisher not in publishers_dic:
-        indx+=1
-        publishers_dic[this_publisher]=indx
+list_of_new_publishers=df['publisher'].tolist()
+for this_publisher in list_of_new_publishers:
+    if this_publisher not in publishers_list:
+        publishers_list.append(this_publisher)
+pickle.dump( publishers_list, open( "data/publishers_list.pkl", "wb" ) )
 
-# add a new column to the dataframe, "publisher ID". The publisher ID correlates to the publisher via the publisher_dic
+list_of_new_domains=df['Domain'].tolist()
+for this_domain in list_of_new_domains:
+    if this_domain not in domains_list:
+        domains_list.append(this_domain)
+pickle.dump( domains_list, open( "data/domains_list.pkl", "wb" ) )
 
-# http://stackoverflow.com/questions/26886653/pandas-create-new-column-based-on-values-from-other-columns
-# http://stackoverflow.com/questions/18472634/how-to-compute-a-new-column-based-on-the-values-of-other-columns-in-pandas-pyt
-# http://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe
-# http://stackoverflow.com/questions/10729210/iterating-row-by-row-through-a-pandas-dataframe
-
-# for index, row in df.iterrows():
-#     if row['publisher']
-
-list_of_domains=df['Domain'].tolist()
-indx=max_domain_indx
-for this_domain in list_of_domains:
-    if this_domain not in domains_dic:
-        indx+=1
-        domains_dic[this_domain]=indx
-
-# Ben's method of creating a dictionary -- each word as key gets unique integer value
 list_of_titles=df['Title'].tolist()
-list_of_words=[]
+list_of_new_words=[]
 for this_title in list_of_titles:
     split_title_list=this_title.split(' ')
     for this_word in split_title_list:
         # this would be the place to use regex to remove 's and : and ?
-        list_of_words.append(this_word.lower())
-sorted_word_list_dedup=sorted(list(set(list_of_words)))
+        list_of_new_words.append(this_word.lower())
+sorted_word_list_dedup=sorted(list(set(list_of_new_words)))
 # print(sorted_word_list_dedup)
 
-indx=max_word_indx
 for this_word in sorted_word_list_dedup:
-    if (this_word not in words_dic) and (this_word not in stop_words_list):
-        indx+=1
-        words_dic[this_word]=indx
+    if (this_word not in words_list) and (this_word not in stop_words_list):
+        words_list.append(this_word)
+pickle.dump( words_list, open( "data/words_list.pkl", "wb" ) )
 
-print(words_dic)
+
+#print(words_list)
 
 # Mike's method to get all of the unique words in a column 
 # results=set()  
 # df.ix[:,1].str.lower().str.split(' ').apply(results.update) # convert 'Titles' column to lowercase, split on ' '. Apply = to entire column; update = in-place change
 # print sorted(results)
 
+print(df.shape)
+print("add a column per word, per publisher, per domain")
+for this_publisher in publishers_list:
+    df[this_publisher]=0
+for this_domain in domains_list:
+    df[this_domain]=0
+for this_word in words_list:
+    df[this_word]=0
+
+print(df.shape)
+
+# print(df)
+
+# for every word in "words_list" and for every row, is that word contained in the title?
+print df[df.Title.str.contains('small')].index
+print df.Title.ix[28]

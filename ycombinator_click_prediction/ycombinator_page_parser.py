@@ -69,6 +69,6 @@ for page in xrange(1,10):   #set the number of pages that you want to grab limit
 tf.to_pickle('ycombinator.pkl')
 results=set()  #gets all of the unique words in a column 
 tf.ix[:,1].str.lower().str.split(' ').apply(results.update) #
-
-f=open('word_list.txt','w')
-f.write(str(sorted(results)))
+tf.reset_index(drop=True,inplace=True)
+# f=open('word_list.txt','w')
+# f.write(str(sorted(results)))
