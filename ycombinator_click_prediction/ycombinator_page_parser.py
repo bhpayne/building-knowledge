@@ -66,9 +66,11 @@ for page in xrange(1,10):   #set the number of pages that you want to grab limit
 
 #df.to_excel('ycombinator.xls') #write to excel
 #tf.to_csv('ycombinator.csv') #write to CSV
-tf.to_pickle('ycombinator.pkl')
 results=set()  #gets all of the unique words in a column 
 tf.ix[:,1].str.lower().str.split(' ').apply(results.update) #
 tf.reset_index(drop=True,inplace=True)
+
+tf.to_pickle('ycombinator.pkl')
+
 # f=open('word_list.txt','w')
 # f.write(str(sorted(results)))

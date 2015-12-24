@@ -1,6 +1,8 @@
 import pandas as pd
 import os.path # file detection
 import pickle
+import re
+import numpy as np
 
 def max_value_in_dic(this_dic):
     max_value=-1
@@ -30,11 +32,6 @@ f=open('stop_word_list.txt','r')
 stop_words=f.read()
 stop_words_list= stop_words.split('\n')
 
-df['clicked_link']=0
-df['clicked_comments']=0
-df['clicked_domain']=0
-df['clicked_publisher']=0
-
 list_of_new_publishers=df['publisher'].tolist()
 for this_publisher in list_of_new_publishers:
     if this_publisher not in publishers_list:
@@ -52,7 +49,8 @@ list_of_new_words=[]
 for this_title in list_of_titles:
     split_title_list=this_title.split(' ')
     for this_word in split_title_list:
-        # this would be the place to use regex to remove 's and : and ?
+        # this would be the place to use regex to remove 's and : and ? ( and )
+        this_word=re.sub('\'s|\?|:|\(|\)|\,','',this_word)
         list_of_new_words.append(this_word.lower())
 sorted_word_list_dedup=sorted(list(set(list_of_new_words)))
 # print(sorted_word_list_dedup)
@@ -70,6 +68,11 @@ pickle.dump( words_list, open( "data/words_list.pkl", "wb" ) )
 # df.ix[:,1].str.lower().str.split(' ').apply(results.update) # convert 'Titles' column to lowercase, split on ' '. Apply = to entire column; update = in-place change
 # print sorted(results)
 
+df.replace('',np.NaN,regex=True,inplace=True)
+df=df.fillna(np.NaN)
+# print(df)
+# exit()
+
 print(df.shape)
 print("add a column per word, per publisher, per domain")
 for this_publisher in publishers_list:
@@ -84,5 +87,30 @@ print(df.shape)
 # print(df)
 
 # for every word in "words_list" and for every row, is that word contained in the title?
-print df[df.Title.str.contains('small')].index
-print df.Title.ix[28]
+for word in words_list:
+#     print word
+    indx=df[df.Title.str.contains(word)].index
+    df[word].ix[indx]=1
+# print df[word].ix[indx]
+for word in domains_list:
+    indx=df[df.Title.str.contains(word)].index
+    df[word].ix[indx]=1
+for word in publishers_list:
+    indx=df[df.Title.str.contains(word)].index
+    df[word].ix[indx]=1
+
+df.drop("Title",inplace=True,axis=1)
+df.drop("Domain",inplace=True,axis=1)
+df.drop("publisher",inplace=True,axis=1)
+df.drop("urls",inplace=True,axis=1)
+
+df['clicked_link']=0
+df['clicked_comments']=0
+df['clicked_domain']=0
+df['clicked_publisher']=0
+
+print(df.shape)
+# print(df)
+
+df.to_pickle('numeric_df.pkl')
+
