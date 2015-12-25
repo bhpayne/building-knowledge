@@ -20,6 +20,7 @@ df=pd.read_html(html)[3].ix[:,:2] #read in dataframe
 df[1]=df[1].shift(-1) #align data
 df=df.dropna(how='all')[4:-2].reset_index(drop=True) #clean dataframe
 df.columns=['Number','Points','Title'] #name columns 
+
 df.Points=df.Points.replace('points by|hours?|days?|ago|\||comments?','',regex=True)
 points_df=pd.DataFrame(df.Points.str.split('\s+').tolist()).ix[:,:3]
 df=pd.concat([df,points_df],axis=1)#combine points dataframe and df
@@ -29,6 +30,7 @@ domains=pd.DataFrame(df.Title.str.split('(',).tolist())     #extracting the doma
 domains.ix[:,1][domains.ix[:,2].str.len()>0]=domains.ix[:,2] #
 domains=domains.ix[:,1] #
 df['Domain']=domains.replace('\)','',regex=True) #
+
 df.Title=df.Title.replace(df.Domain,'',regex=True) #cleaning Title
 df.Title=df.Title.replace('\(\)','',regex=True)# cleaning Title column
 
@@ -39,7 +41,6 @@ urls_df=urls_df.replace('https://github.com/HackerNews/AP.*|https://hn.algolia.c
 urls_df=urls_df[urls_df[0]!='']
 urls_df.reset_index(drop=True,inplace=True)
 urls_df.replace('".*','',regex=True,inplace=True)
-
 
 
 df=pd.concat([df,urls_df],axis=1)
