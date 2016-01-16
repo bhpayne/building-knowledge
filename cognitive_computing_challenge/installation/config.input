@@ -1,0 +1,5 @@
+# configuration file for python scripts
+
+# include trailing / in path
+path_to_PDFs:    '/home/user/Downloads/'
+

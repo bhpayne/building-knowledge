@@ -1,0 +1,64 @@
+### overview ###
+This submission is based on parsing text from PDFs using multiple approaches. Each approach can yield different content, which is then stored in a Redis database. User queries are then sent to the database. 
+
+
+### assumptions ###
+User provides document content
+Documents are PDF or docx format
+Each document is a distinct entity
+Each document has structured content (includes labels)
+The relevant metadata is identified by the party interested in querying the corpus
+
+
+### specify directory containing PDFs in config.input ###
+gedit config.input
+
+### run processing scripts ###
+python extract_pictures_and_create_txt_from_PDF.py
+python docx_into_redis.py
+python pdf2txt_into_redis.py
+python pdftotext_into_redis.py
+
+### run interface (interactive terminal prompts) ###
+python query_entry.py
+
+## example query entry ##
+
+Construct a query
+0   construct query from defined fields
+1   supply query text
+selection [0]: 
+
+from list, selection "10  Price"
+
+for Price, select a relation:
+1  <
+2  <=
+3  >
+4  >=
+5  =
+selection [0]: 3
+
+for Price, value:
+number [1]: 6000000
+
+current query input:
+[['defined field', 'Price', '>', '6000000']]
+
+Append another constraint?
+1   finished with query constraints, continue on to construct result constraint
+2   append another query constraint
+
+selection [1]: 
+
+
+Choose output qualifier
+
+0   set of
+1   percentage of
+2   average value from list
+3   which X has max count
+4   which X has min count
+selection [0]: 
+
+
