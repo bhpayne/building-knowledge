@@ -15,6 +15,9 @@ pd.set_option('display.max_rows', 1000)
 pd.set_option('max_colwidth',700)
 pd.set_option('display.width', 1000)
 tf=pd.DataFrame()
+def f(x):
+    return x[0] not in x[1]
+
 
 def get_page(page,tf=tf):
     url='https://news.ycombinator.com/news?p={}'.format(page)
@@ -45,8 +48,9 @@ def get_page(page,tf=tf):
         print 'length of the dataframe',len(df)                 #testing for mismatch of length of urls and lenght of df
         print 'length of urls',len(re.findall('href="(http.{,150})',data)[1:-1])
         df['urls']=re.findall('href="(http.{,150})',data)[1:-1]
-      
+        df['comments_url']=re.findall('(item\?id.*?)"',data)[0::2]
         
+        df['comments_url']='https://news.ycombinator.com/'+df['comments_url']
     df.urls.replace('".*','',regex=True,inplace=True)  #clean urls
     df.Title=df.Title.replace(df.Domain,'',regex=True) #cleaning Title
     df.Title=df.Title.replace('\(\)','',regex=True)# cleaning Title column
@@ -56,7 +60,7 @@ def get_page(page,tf=tf):
     return df
 
 
-for page in xrange(1,10):   #set the number of pages that you want to grab limit is around 38 more than that and they return a blank page
+for page in xrange(1,2):   #set the number of pages that you want to grab limit is around 38 more than that and they return a blank page
     try:
         tf=pd.concat([tf,get_page(page)])
     except:
@@ -67,10 +71,11 @@ for page in xrange(1,10):   #set the number of pages that you want to grab limit
 #df.to_excel('ycombinator.xls') #write to excel
 #tf.to_csv('ycombinator.csv') #write to CSV
 results=set()  #gets all of the unique words in a column 
+
 tf.ix[:,1].str.lower().str.split(' ').apply(results.update) #
 tf.reset_index(drop=True,inplace=True)
-
+tf.urls[tf[['Domain','urls']].apply(f,axis=1)]='' #removes url in the case that the domain and url do not match /better solution needed
 tf.to_pickle('ycombinator.pkl')
 
 # f=open('word_list.txt','w')
-# f.write(str(sorted(results)))
+# f.write(str(sorted(results))
