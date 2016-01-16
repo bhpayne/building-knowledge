@@ -1,0 +1,67 @@
+1) DocumentDetails
+* Document Name | Text
+* Document Date | Text
+* Document Type | Text
+* Document Source | Text
+* Document Location | Text
+
+3) Location, price, listing id
+* Street address | Text
+* City | Text | group full and abbreviated NAMES.
+* Province | Text | group full and abbreviated NAMES | Example: British Columbia = BC, Ontario = ON
+* Postal code | Text
+* Price | Numeric
+* Listing id | Text
+
+4) Property,building,storeys,community,title,land and parking
+* Property Type | Text | group full and abbreviated TEXT.
+* Building Type | Text | group full and abbreviated TEXT.
+* Storeys | Numeric | constraint: non-negative integer in range 0,200
+* Community Name | Text | group full and abbreviated NAMES.
+* Title | Title
+* Land Size Length | Numeric | manage English and French system of measurement | Example: | constraint: non-negative
+* Land Size Length Unit | Text | group full and abbreviated UNIT. | constraint: non-negative
+* Land Size Width | Numeric | manage English and French system of measurement. | constraint: non-negative
+* Land Size Width Unit | Text | group full and abbreviated UNIT. | constraint: non-negative
+* Parking type | Text | group full and abbreviated TEXT.
+
+6) PropertyDetails	
+* Amenities Nearby | Text | group full and abbreviated TEXT.
+* Features | Text | group full and abbreviated TEXT.
+* Parking Type | Text | group full and abbreviated TEXT.
+* Total Parking Spaces | Numeric | constraint: non-negative
+
+7) Building Details
+* Basement Features | Text | group full and abbreviated TEXT.
+* Basement Type | Text | group full and abbreviated TEXT.
+* Bathrooms | Numeric | constraint: non-negative
+* Bedrooms Above Grade | Numeric | constraint: non-negative
+* Bedrooms Below Grade | Numeric | constraint: non-negative
+* Cooling | Text | group full and abbreviated TEXT.
+* Exterior Finish | Text | group full and abbreviated TEXT.
+* Heating Fuel | Text | group full and abbreviated TEXT.
+* Heating Type | Text | group full and abbreviated TEXT.
+* Style | Text | group full and abbreviated TEXT.
+
+8) Room Details
+* Room Level | Text | group full and abbreviated TEXT.
+* Room Type | Text | group full and abbreviated TEXT.
+* Room Length | Numeric | manage English and French system of measurement. | constraint: non-negative
+* Room Length Unit | Text | group full and abbreviated UNIT. | choices: meters, feet, feet+inches
+* Room Width | Numeric | manage English and French system of measurement. | constraint: non-negative
+* Room Width Unit | Text | group full and abbreviated UNIT. | constraint: non-negative
+
+9) PropertyScore
+* Walk Score | Numeric | contraint: non-negative integer in range 0 to 100
+* Dependence | Text
+
+10)Realtor and Real Estate Company
+* Realtor name | Text group full and abbreviated names.
+* Realtor phone number | Numeric | constraint: phone number 000-000-0000 or 000-0000 or 0-000-000-0000
+* Real Estate Company | Text | group full and abbreviated NAMES.
+* Real Estate Address | Text
+* Real Estate City | Text | group full and abbreviated NAMES.
+* Real Estate Province | Text | group full and abbreviated NAMES.
+* Real Estate Postal Code | Text
+* Real Estate Phone Number | Numeric | constraint: phone number 000-000-0000 or 000-0000 or 0-000-000-0000
+* Real Estate Fax Number | Numeric | constraint: phone number 000-000-0000 or 000-0000 or 0-000-000-0000
