@@ -26,3 +26,14 @@ for w in sorted(hist, key=hist.get, reverse=False):
   
 #for w in sorted(hist, key=hist.get, reverse=True):
 #  print w, hist[w]
+
+#option 2
+#import requests
+#import re
+#data=requests.get('http://shakespeare.mit.edu/romeo_juliet/full.html').text
+#lst=[]
+#for line in data.split('\n'):
+#    for word in re.sub('<.*?>|,|;|\'|:|\.|\?|\[|!','',line).split(' '):
+#        lst.append(word.lower())
+#wordlist=set(lst)
+#print sorted(set((x,lst.count(x)) for x in wordlist),key=lambda y:y[1],reverse=True)
