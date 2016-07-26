@@ -1,0 +1,20 @@
+//  Code snippet to show how to 
+//  get current time (elapsed seconds since 1/1/1970)
+//  and then get "pieces" of the date
+
+#include <time.h>
+
+
+    time_t currTime;
+    struct tm *tmPtr;
+
+    time(&currTime);
+
+    tmPtr = localtime(&currTime);
+
+    //  tmPtr->tm_mon    is month number (0 = January)
+    //  tmPtr->tm_mday   is day of month
+    //  tmPtr->tm_year   is year minus 1900
+
+
+

@@ -1,0 +1,26 @@
+// These go inside the class body:
+
+static int daysPerMonth[12];
+static string monthNames[12];
+
+bool isLeapYear();
+
+
+
+
+// These go outside the class body:
+
+int MyDate::daysPerMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+string MyDate::monthNames[] =
+    {"January", "February", "March", "April", "May",
+     "June", "July", "August", "September", "October",
+     "November", "December"};
+
+bool isLeapYear() {
+	// assuming instance variable is named "y"
+	if(y % 400 == 0 || ((y % 4 == 0) && (y % 100 != 0)))
+	    return true;
+	else
+	    return false;
+}

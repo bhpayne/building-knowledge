@@ -1,0 +1,17 @@
+Here's the formula for the monthly payment.
+
+
+M = P * ( J / ( 1 - ( 1 + J) ** -N))
+
+where
+
+M is the monthly payment
+P = Initial Loan Amount
+J = I/ (12 x 100)
+I = interest rate
+N = Number of months over which loan is amortized
+
+
+Note:  In the formula above, ** represents exponentiation - i.e.,
+    raise (1 + J) to the -N power.  This is not an actual
+    operator in C++, so you must use the pow() function.
