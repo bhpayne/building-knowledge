@@ -1,0 +1,54 @@
+//
+//	Solution 2-1
+//
+Identify objects in a kitchen:
+
+	Wares
+		DinnerWare
+			cups
+			saucers
+			plates
+			bowls
+		FlatWare
+			fork
+			spoon
+			knife
+		CookingWare
+			Pots
+			Pans
+			Griddle
+			Colinder
+		Hardware
+			CounterTop
+			Cabinets
+			Drawers
+	Linens
+		Towels
+			DishTowel
+		TableCloth
+		Napkins
+		PlaceMats
+	Furniture
+		Tables
+		Chairs
+		Desk
+	Appliances
+		LargeAppliances
+			Stove
+			Refrigerator
+			Oven
+				Microwave
+				Convection
+			Freezer
+		SmallAppliances		
+			Blender
+			FoodProcessor
+			Toaster
+				ToasterOven is a Toaster + Oven
+	Electronics
+		Telephone
+		Television
+	Others
+		garbage disposal
+		waste basket
+		sink

@@ -1,0 +1,40 @@
+//
+//	Solution 2-2
+//
+Fraction:
+	void Create(int,int)
+	void Input(int, int)
+	void Output(Fraction)
+	void Destroy(Fraction)
+	Fraction Add(Fraction,Fraction)
+	Fraction Multiply(Fraction,Fraction)
+	Fraction Divide(Fraction,Fraction)
+	Fraction Subtract(Fraction,Fraction)
+	Fraction Power(Fraction, Fraction)
+	int Gcd(int, int)
+	void Reciprocal(Fraction)
+	Bool LessThan(Fraction, Fraction)
+	Bool GreaterThan(Fraction, Fraction)
+	Bool LessThanOrEqual(Fraction, Fraction)
+	Bool GreaterThanOrEqual(Fraction, Fraction)
+	Bool NotEqual(Fraction, Fraction)
+	Bool Equal(Fraction, Fraction)
+Set:
+	void Create(Set)
+	void Output(Set)
+	void Destroy(Set)
+	Set AddElement(Set, Element_type)
+	Set Intersection(Set, Set)
+	Set Union(Set, Set)
+	Set Difference(Set, Set)
+	Bool IsEmpty(Set)
+	Bool IsElement(Set)
+
+BankAccount:
+	void Open(BankAccount)
+	void Close(BankAccount)
+	void close(BankAccount)
+	double GetBalance(BankAccount)
+	double Deposit(double,BankAccount)
+	double Withdraw(double,BankAccount)
+	void transfer(double, BankAccount, BankAccount);

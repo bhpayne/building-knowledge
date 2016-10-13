@@ -1,0 +1,41 @@
+//
+//	Solution 2-3
+//
+
+SUBJECT MATTER DOMAIN: A University
+
+Class # 1) Student
+		Attributes
+			Name
+			YearEntered
+			Major (Math, Physics, Liberal Arts)
+			Dorm
+			Sorority/Fraternity
+		Operations
+			Studies
+			Dates
+			PlaysIntramural
+			RunsForOffice
+			WorksPartTime
+Class # 2) Professor
+		Attributes
+			Name
+			Tenure
+			Subject
+			Salary
+			Books
+		Operations
+			Teaches
+			Publishes
+			Advises
+			GetsRaise
+			Tutors
+
+You never really know if you have listed all of the attributes or all of
+the operations.  You may not need them all.  You get by with the subset
+of attribues and operations needed to solve a particular problem.  For
+example a  'Person'  in a Motor  Vehicle  Registration  Domain  may have
+different attributes and operations than a 'Person' in  a Hospital Study
+Domain.  During the implementation of a design, you might realize  that
+an operation or an attribute was  missing. You can always add it later.
+The process is iterative.
