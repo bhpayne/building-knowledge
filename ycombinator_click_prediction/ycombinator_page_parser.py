@@ -72,6 +72,8 @@ for page in xrange(1,2):   #set the number of pages that you want to grab limit 
 #tf.to_csv('ycombinator.csv') #write to CSV
 results=set()  #gets all of the unique words in a column 
 
+print(results)
+
 tf.ix[:,1].str.lower().str.split(' ').apply(results.update) #
 tf.reset_index(drop=True,inplace=True)
 tf.urls[tf[['Domain','urls']].apply(f,axis=1)]='' #removes url in the case that the domain and url do not match /better solution needed

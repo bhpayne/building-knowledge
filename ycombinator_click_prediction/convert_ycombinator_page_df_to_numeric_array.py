@@ -3,7 +3,7 @@ import os.path # file detection
 import pickle
 import re
 import numpy as np
-from tqdm import tqdm # sudo pip install tqdm # https://pypi.python.org/pypi/tqdm
+from tqdm import tqdm # (Progress Meter) sudo pip install tqdm # https://pypi.python.org/pypi/tqdm
 
 def max_value_in_dic(this_dic):
     max_value=-1

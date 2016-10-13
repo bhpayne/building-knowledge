@@ -2,6 +2,12 @@
 python ycombinator_page_parser.py
 python convert_ycombinator_page_df_to_numeric_array.py
 python ml_for_df.py
+**********************
+
+designing click-prediction
+* cookie
+* login
+* unique user agent string. 2^20=1,000,000; ycombinator has 200,000 unique visitors per day
 
 ****************************************
 
